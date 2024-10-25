@@ -8,31 +8,8 @@ applicationName: "flair"
 env:
 - name: MARIADB_WRITER_USERNAME
   value: rhino_rw
-- name: MARIADB_WRITER_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: rhino-db-writer
-      key: password
-- name: MARIADB_READER_USERNAME
-  value: rhino_ro
-- name: MARIADB_READER_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: rhino-db-reader
-      key: password
-- name: MARIADB_WRITER_HOST
-  valueFrom:
-    secretKeyRef:
-      name: maria-db
-      key: host
-- name: MARIADB_DB
-  value: rhino
-- name: MARIADB_USE_SSL
-  value: "false"
 - name: KEYCLOAK_SCHEME
   value: https
-- name: KEYCLOAK_AUTHORITY
-  value: $KEYCLOAK_AUTHORITY
 - name: KEYCLOAK_REALM
   value: artemis
 
