@@ -1,0 +1,56 @@
+replicaCount: $REPLICA_COUNT
+
+image:
+  pullPolicy: IfNotPresent
+
+applicationName: "rhino-insight-api"
+
+env:
+- name: MARIADB_WRITER_USERNAME
+  value: rhino_rw
+- name: MARIADB_WRITER_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: rhino-db-writer
+      key: password
+- name: MARIADB_READER_USERNAME
+  value: rhino_ro
+- name: MARIADB_READER_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: rhino-db-reader
+      key: password
+- name: MARIADB_WRITER_HOST
+  valueFrom:
+    secretKeyRef:
+      name: maria-db
+      key: host
+- name: MARIADB_DB
+  value: rhino
+- name: MARIADB_USE_SSL
+  value: "false"
+- name: KEYCLOAK_SCHEME
+  value: https
+- name: KEYCLOAK_AUTHORITY
+  value: $KEYCLOAK_AUTHORITY
+- name: KEYCLOAK_REALM
+  value: artemis
+
+service:
+  type: ClusterIP
+  port: 4410
+
+ingress:
+  paths:
+    - /insights
+
+volumes: {}
+volumeMounts: {}
+
+resources:
+  limits:
+    memory: 256Mi
+    cpu: 500m
+  requests:
+    memory: 128Mi
+    cpu: 250m
