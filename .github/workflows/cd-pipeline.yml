@@ -26,7 +26,7 @@ jobs:
       uses: Stonewall-Defense/configure-deployment-environment@main
       with:
         branch: ${{ github.ref }}
-        application: rhino
+        application: flair
         variables: ${{ toJson(vars) }}
         secrets: ${{ toJson(secrets) }}   
         valuesFile: .github/deployment/values.yaml           
