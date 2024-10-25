@@ -1,9 +1,9 @@
-replicaCount: $REPLICA_COUNT
+replicaCount: 2
 
 image:
   pullPolicy: IfNotPresent
 
-applicationName: "rhino-insight-api"
+applicationName: "flair"
 
 env:
 - name: MARIADB_WRITER_USERNAME
@@ -38,11 +38,11 @@ env:
 
 service:
   type: ClusterIP
-  port: 4410
+  port: 3000
 
 ingress:
   paths:
-    - /insights
+    - /test
 
 volumes: {}
 volumeMounts: {}
